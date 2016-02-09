@@ -21,3 +21,12 @@ run C:\Program Files\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.
 fabric:/HelloWorldApplication/HelloWorld is not ready, 1 partitions remaining.
 
 fabric:/HelloWorldApplication/HelloWorldStateful is not ready, 1 partitions remaining.
+
+4) tried running the diagnose commands from here: https://azure.microsoft.com/en-us/documentation/articles/service-fabric-understand-and-troubleshoot-with-system-health-reports
+
+Note that running powershell
+
+Connect-ServiceFabricCluster -ConnectionEndpoint localhost:19000
+
+before them is a requirement. But no helpful info on the error.
+
