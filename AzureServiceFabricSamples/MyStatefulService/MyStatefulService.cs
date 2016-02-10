@@ -48,11 +48,11 @@ namespace MyStatefulService
                     var result = await myDictionary.TryGetValueAsync(tx, "Counter-1");
 
                     // Log whether the value existed or not.
-                    ServiceEventSource.Current.ServiceMessage(this, "Current Counter Value: {0}",
-                        result.HasValue ? result.Value.ToString() : "Value does not exist.");
+                    ServiceEventSource.Current.ServiceMessage(this, "Current Counter Value: {0}", result.HasValue ? result.Value.ToString() : "Value does not exist.");
 
                     // If the "Counter-1" key doesn't exist, set its value to 0
-                    // else add 1 to its current value.
+                    // else add 1 to its current value. -- interesting call! Allows a new value to be set
+                    // or an update to be performed
                     await myDictionary.AddOrUpdateAsync(tx, "Counter-1", 0, (k, v) => ++v);
 
                     // Committing the transaction serializes the changes and writes them to this partition's secondary replicas.
