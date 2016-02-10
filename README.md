@@ -21,10 +21,14 @@ run *C:\Program Files\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup
 
 4) After this I starting having an error also described in the comments of another tutorial (https://azure.microsoft.com/en-us/documentation/articles/service-fabric-reliable-services-quick-start/) , but where no fix is proposed:
 
-fabric:/HelloWorldApplication/HelloWorld is not ready, 1 partitions remaining.
-fabric:/HelloWorldApplication/HelloWorldStateful is not ready, 1 partitions remaining.
+fabric:/MyApplication/MyStatefulService is not ready, 1 partitions remaining.
+
+fabric:/MyApplication/MyStatefulService is not ready, 1 partitions remaining.
 
 Checking the event viewer, I found a FileNotFoundException, and further down, a message saying that there was not enough free space on disk. I had 2Gb free, but turns out Service Fabric requires 8Gb free to run. This was the problem, and after I free'd space the project ran fine.
+
+5) Finally, after getting the sample running, the Diagnostics window in VS2015 was supposed to show me the applicational log, the result of the calls to ServiceEventSource.Current.ServiceMessage(), but nothing was visible. Turns out I had to add the following as a provider in the diagnostics window: MyCompany-MyApplication-MyStatefulService . I think this was supposed to be added automatically when debugging, but that's not happening.
+
 
 ## Some helpful information (cheat-sheet)
 
