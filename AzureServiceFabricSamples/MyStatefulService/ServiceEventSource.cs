@@ -85,6 +85,8 @@ namespace MyStatefulService
         [NonEvent]
         public void ServiceMessage(StatefulService service, string message, params object[] args)
         {
+            // System.IO.File.AppendAllText("jotadebug.txt", string.Format("{0} : {1}{2}", service.ServiceInitializationParameters.ServiceName.ToString(), string.Format(message, args), System.Environment.NewLine));
+
             if (this.IsEnabled())
             {
                 string finalMessage = string.Format(message, args);
