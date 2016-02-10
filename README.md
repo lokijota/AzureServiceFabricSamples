@@ -17,10 +17,11 @@ run *C:\Program Files\Microsoft SDKs\Service Fabric\ClusterSetup\CleanCluster.ps
 
 run *C:\Program Files\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1*
 
-3) After this I starting having an error also described in the comments of another tutorial (https://azure.microsoft.com/en-us/documentation/articles/service-fabric-reliable-services-quick-start/) , but where no fix is proposed:
+3) The troubleshooting guide (https://github.com/Azure/azure-content/blob/master/articles/service-fabric/service-fabric-diagnostics-troubleshoot-common-scenarios.md) didn't help.
+
+4) After this I starting having an error also described in the comments of another tutorial (https://azure.microsoft.com/en-us/documentation/articles/service-fabric-reliable-services-quick-start/) , but where no fix is proposed:
 
 fabric:/HelloWorldApplication/HelloWorld is not ready, 1 partitions remaining.
-
 fabric:/HelloWorldApplication/HelloWorldStateful is not ready, 1 partitions remaining.
 
 Checking the event viewer, I found a FileNotFoundException, and further down, a message saying that there was not enough free space on disk. I had 2Gb free, but turns out Service Fabric requires 8Gb free to run. This was the problem, and after I free'd space the project ran fine.
